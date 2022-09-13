@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>Форма добавления товара</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Наименование товара</mat-label>
+      <input formControlName="name" matInput placeholder="Введите название товара..." required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Категория товара</mat-label>
+      <mat-select formControlName="category" placeholder="Укажите категорию товара..." required>
+        <mat-option [value]="'Компьютеры'">Компьютеры</mat-option>
+        <mat-option [value]="'Планшеты'">Планшеты</mat-option>
+        <mat-option [value]="'Мониторы'">Мониторы</mat-option>
+        <mat-option [value]="'Ноутбуки'">Ноутбуки</mat-option>
+        <mat-option [value]="'Серверы'">Серверы</mat-option>
+        <mat-option [value]="'Оргтехника'">Оргтехника</mat-option>
+        <mat-option [value]="'Акустика'">Акустика</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Выберите дату</mat-label>
+      <input [matDatepicker]="datepicker" formControlName="date" matInput required>
+      <mat-datepicker-toggle [for]="datepicker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+
+    <label id="example-radio-group-label">
+      <h2>Состояние товара</h2>
+    </label>
+    <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                     formControlName="productCondition">
+      <mat-radio-button *ngFor="let el of productConditionList" [value]="el" class="example-radio-button">
+        {{el}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Цена, $</mat-label>
+      <input formControlName="price" matInput placeholder="Введите стоимость товара..." required type="number">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Допольнительно</mat-label>
+      <textarea cdkAutosizeMaxRows="5"
+                cdkAutosizeMinRows="1"
+                cdkTextareaAutosize
+                formControlName="comment"
+                matInput
+                placeholder="Описание товара..." required></textarea>
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div [align]="'end'" mat-dialog-actions>
+  <button mat-dialog-close mat-raised-button>Отменить</button>
+  <button (click)="addProduct()" [disabled]="form.invalid" color="accent" mat-raised-button>Сохранить</button>
+</div>
