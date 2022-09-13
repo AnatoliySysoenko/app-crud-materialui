@@ -1,0 +1,15 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.toolbar,
+.mat-toolbar {
+  background: #3f51b5;
+  color: #fff;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
